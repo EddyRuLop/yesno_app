@@ -24,8 +24,10 @@ class ChatProvider extends ChangeNotifier {
       text: text,
       fromWho: FromWho.me,
     );
+
     //Agregar un nuevo mensaje a la lista
     messageList.add(newMessage);
+    debugPrint('flutter: Cantidad de mensajes: ${messageList.length}');
 
     //Notifica a provider que algo cambio
     notifyListeners();
