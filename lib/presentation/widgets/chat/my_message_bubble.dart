@@ -6,7 +6,7 @@ class MyMessageBubble extends StatelessWidget {
   final Message message;
   const MyMessageBubble(
       {super.key,
-      // se añade la varianble al constructor
+      // se añade la variable al constructor
       required this.message});
 
   @override
