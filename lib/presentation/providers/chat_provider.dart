@@ -25,6 +25,8 @@ class ChatProvider extends ChangeNotifier {
       herReply();
     }
 
+    //Agregar la hora al mensaje
+
     //Notifica a provider que algo cambio
     notifyListeners();
 

@@ -9,6 +9,10 @@ class HerMessageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
+    final DateTime time = message.sentAt.toLocal();
+    final String hourText =
+        '${_formatHour(time.hour)}:${_twoDigits(time.minute)} ${_getAmPm(time.hour)}';
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -16,28 +20,51 @@ class HerMessageBubble extends StatelessWidget {
           decoration: BoxDecoration(
               color: colors.secondary, borderRadius: BorderRadius.circular(20)),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: Text(
-              message.text,
-              style: const TextStyle(color: Colors.white),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  message.text,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      hourText,
+                      style:
+                          const TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
+                    const SizedBox(width: 5),
+                    Icon(
+                      message.isRead ? Icons.done_all : Icons.done,
+                      size: 16,
+                      color: message.isRead
+                          ? Colors.lightBlueAccent
+                          : Colors.white70,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
         const SizedBox(height: 5),
-
-        _ImageBubble(
-          //Que siempre va a devolver una imagen
-          imageUrl: message.imageUrl!,
-        ),
-
-        const SizedBox(
-          height: 10,
-        )
-
-        //Todo: imagen
+        if (message.imageUrl != null) _ImageBubble(imageUrl: message.imageUrl!),
+        const SizedBox(height: 10),
       ],
     );
   }
+
+  String _twoDigits(int n) => n.toString().padLeft(2, '0');
+  String _formatHour(int hour) {
+    final h = hour % 12;
+    return (h == 0 ? 12 : h).toString();
+  }
+
+  String _getAmPm(int hour) => hour >= 12 ? 'PM' : 'AM';
 }
 
 class _ImageBubble extends StatelessWidget {
