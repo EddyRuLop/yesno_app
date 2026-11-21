@@ -1,16 +1,12 @@
-# yesno_app
+# Yes No App
 
-A new Flutter project.
+Práctica de Flutter que presenta las respuestas de la API YesNo en una interfaz de chat. El estado de conversación se administra en `lib/presentation/providers/`. Usa conexión a Internet para consultar la API.
 
-## Getting Started
+## Ejecutar localmente
 
-This project is a starting point for a Flutter application.
+Con Flutter instalado y un dispositivo o emulador disponible:
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+flutter run
+```
